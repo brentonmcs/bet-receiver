@@ -5,10 +5,10 @@
 
     var Rabbit = require('node-rabbitmq');
     var logSender = require('node-log-sender');
-    var config = require('ptl-config');
+    //var config = require('ptl-config');
     var bodyParser = require('body-parser');
 
-    var rabbit = new Rabbit(config.queueUri, function () {
+    var rabbit = new Rabbit(null, function () {
         logSender.configure(rabbit);
 
         app.use(bodyParser.json());
