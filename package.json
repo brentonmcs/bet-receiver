@@ -11,9 +11,9 @@
   "dependencies": {
     "body-parser": "^1.12.0",
     "express": "^4.11.2",
-    "node-log-sender": "git://github.com/brentonmcs/node-log-sender",
-    "node-rabbitmq": "git://github.com/brentonmcs/node-rabbitmq",
-    "ptl-config": "git+https://git@bitbucket.org:brentonmcs/ptl-config.git"
+    "node-log-sender": "git://github.com/brentonmcs/node-log-sender#master",
+    "node-rabbitmq": "git://github.com/brentonmcs/node-rabbitmq#master",
+    "ptl-config": "git+https://git@bitbucket.org:brentonmcs/ptl-config.git#master"
   },
   "devDependencies": {
     "request": "^2.53.0",
