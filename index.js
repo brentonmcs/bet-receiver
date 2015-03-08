@@ -32,11 +32,13 @@
             res.send('Saved');
         });
 
-        var server = app.listen(process.env.PORT || 3000, function () {
-            logSender.info('Bet Receiver Server Stated http://' + server.address().address + ':' + server.address().port);
-        });
+
     });
 
+    app.get("/test", function (req, res) {
+        res.send('testing');
+    });
+    app.listen(3000);
 
     function isValidJson(body) {
         return body.competitors && Object.prototype.toString.call(body.competitors) === '[object Array]';
