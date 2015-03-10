@@ -6,8 +6,27 @@
     var Rabbit = require('node-rabbitmq');
     var logSender = require('node-log-sender');
     var bodyParser = require('body-parser');
-    
+
+    var winston = require('winston');
+    var logger = new (winston.Logger)({
+        transports: [
+            new (winston.transports.Console)({
+                colorize: 'all',
+                timestamp: true
+            }),
+            new (winston.transports.DailyRotateFile)({filename: "../logs/logs.log"}),
+        ],
+        exceptionHandlers: [
+            new (winston.transports.Console)({
+                colorize: 'all'
+            }),
+            new winston.transports.File({filename: "../logs/exceptions.log"}),
+        ]
+    });
+
+    logger.info("Connecting to Rabbit");
     var rabbit = new Rabbit("amqp://betrec:betrec@52.64.12.93/", function () {
+        logger.info("Connected to Rabbit");
         logSender.configure(rabbit);
 
         app.use(bodyParser.json());
@@ -31,7 +50,7 @@
             res.send('Saved');
         });
         app.listen(3000, function () {
-            console.log('Started Server');
+            logger.info('Started Server');
         });
     });
 
