@@ -14,13 +14,13 @@
                 colorize: 'all',
                 timestamp: true
             }),
-            new (winston.transports.DailyRotateFile)({filename: "../logs/logs.log"}),
+            new (winston.transports.DailyRotateFile)({filename: "logs/logs.log"}),
         ],
         exceptionHandlers: [
             new (winston.transports.Console)({
                 colorize: 'all'
             }),
-            new winston.transports.File({filename: "../logs/exceptions.log"}),
+            new winston.transports.File({filename: "logs/exceptions.log"}),
         ]
     });
 
