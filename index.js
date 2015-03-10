@@ -5,10 +5,9 @@
 
     var Rabbit = require('node-rabbitmq');
     var logSender = require('node-log-sender');
-    //var config = require('ptl-config');
     var bodyParser = require('body-parser');
-
-    var rabbit = new Rabbit(null, function () {
+    
+    var rabbit = new Rabbit("amqp://betrec:betrec@52.64.12.93/", function () {
         logSender.configure(rabbit);
 
         app.use(bodyParser.json());
@@ -31,14 +30,12 @@
             logSender.sendKPI('betReceived');
             res.send('Saved');
         });
-
-
+        app.listen(3000, function () {
+            console.log('Started Server');
+        });
     });
 
-    app.get("/test", function (req, res) {
-        res.send('testing');
-    });
-    app.listen(3000);
+
 
     function isValidJson(body) {
         return body.competitors && Object.prototype.toString.call(body.competitors) === '[object Array]';
