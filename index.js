@@ -14,13 +14,13 @@
                 colorize: 'all',
                 timestamp: true
             }),
-            new (winston.transports.DailyRotateFile)({filename: "logs/logs.log"}),
+            new (winston.transports.DailyRotateFile)({filename: "logs.log"}),
         ],
         exceptionHandlers: [
             new (winston.transports.Console)({
                 colorize: 'all'
             }),
-            new winston.transports.File({filename: "logs/exceptions.log"}),
+            new winston.transports.File({filename: "exceptions.log"}),
         ]
     });
 
@@ -64,7 +64,7 @@
     process.on('uncaughtException', function (err) {
         console.error('uncaughtException:', err.message);
         console.error(err.stack);
-        logSender.error(err.message + " \n" + err.stack);
+        logger.error(err.message + " \n" + err.stack);
         process.exit(1);
     });
 })();
